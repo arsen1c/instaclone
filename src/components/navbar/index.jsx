@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className="actions flex justify-between">
           <Link to="/"><i className="opacity-80 cursor-pointer fas fa-home text-2xl mr-5"></i></Link>
           <Link to="inbox"><i className="opacity-80 cursor-pointer fab fa-facebook-messenger text-2xl mr-5"></i></Link>
-          <i className="opacity-80 cursor-pointer far fa-user-circle text-2xl"></i> 
+          <Link to="arsenic"><i className="opacity-80 cursor-pointer far fa-user-circle text-2xl"></i></Link> 
         </div>
       </div>
     </nav>

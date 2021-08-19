@@ -3,10 +3,10 @@ import React from 'react'
 export default function Content(props) {
   return (
     <div className="max-w-96 h-auto overflow-hidden">
-      <div className="mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
+    <div className="mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
         <div className="post-head flex items-center py-2 px-4">
           <img 
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2019%2F09%2F841798-lamborghini-aventador-super-veloce-cars-supercars-red.jpg&f=1&nofb=1" 
+            src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
             alt=""
             className="h-10 w-10 bg-contain overflow-hidden rounded-3xl"
           />
@@ -16,8 +16,8 @@ export default function Content(props) {
           </div>
         </div>
         <img 
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wallpapers13.com%2Fwp-content%2Fuploads%2F2018%2F11%2FThe-Magic-Islands-of-Lofoten-Norway-Europe-winter-morning-light-landscape-Desktop-HD-Wallpaper-For-PC-Tablet-And-Mobile-3840x2160-1920x1440.jpg&f=1&nofb=1" 
-          alt=""
+          src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
+        alt=""
           className="max-w-96 h-auto overflow-hidden" 
         />
         <div className="flex opacity-80 justify-between post-actions px-3 pt-2">
@@ -32,12 +32,12 @@ export default function Content(props) {
           10 likes
         </div>
         <span className="font-bold px-3">arsen1c</span>
-        <span>Winter days are awesome 🎉🐛🐒</span>
+        <span>New profile pic 🎉</span>
       </div>
-      <div className="mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
+      <div className="mb-4 rounded border b-1 post-card md:w-96 bg-white pb-2">
         <div className="post-head flex items-center py-2 px-4">
           <img 
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2019%2F09%2F841798-lamborghini-aventador-super-veloce-cars-supercars-red.jpg&f=1&nofb=1" 
+            src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
             alt=""
             className="h-10 w-10 bg-contain overflow-hidden rounded-3xl"
           />
@@ -47,8 +47,8 @@ export default function Content(props) {
           </div>
         </div>
         <img 
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2019%2F09%2F841798-lamborghini-aventador-super-veloce-cars-supercars-red.jpg&f=1&nofb=1" 
-        alt=""
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wallpapers13.com%2Fwp-content%2Fuploads%2F2018%2F11%2FThe-Magic-Islands-of-Lofoten-Norway-Europe-winter-morning-light-landscape-Desktop-HD-Wallpaper-For-PC-Tablet-And-Mobile-3840x2160-1920x1440.jpg&f=1&nofb=1" 
+          alt=""
           className="max-w-96 h-auto overflow-hidden" 
         />
         <div className="flex opacity-80 justify-between post-actions px-3 pt-2">
