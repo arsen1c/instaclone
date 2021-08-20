@@ -1,34 +1,40 @@
 {
-  arsenic: {
-    posts: {
-      1: {
-        caption: 'I like winters',
-        likes: '20',
-        image: 'CDN_IMAGE_LINK',
-        date: '1/1/2020'
-      },
-      2: {
-        caption: 'I like chicken nuggets',
-        likes: '201',
-        image: 'CDN_IMAGE_LINK',
-        date: '1/2/2020'
-      }
+  "users": {
+    "arsenic": {
+      "posts": [
+        {
+          "id": 1,
+          "caption": "I like winters",
+          "likes": "20",
+          "image": "CDN_IMAGE_LINK",
+          "date": "1/1/2020"
+        },
+        {
+          "id": 2,
+          "caption": "I like chicken nuggets",
+          "likes": "20",
+          "image": "CDN_IMAGE_LINK",
+          "date": "1/1/2020"
+        }
+      ]
+    },
+    "aashish": {
+      "posts": [
+        {
+          "id": 1,
+          "caption": "I like computers",
+          "likes": "210",
+          "image": "CDN_IMAGE_LINK",
+          "date": "1/11/2020"
+        },
+        {
+          "id": 2,
+          "caption": "I like video games",
+          "likes": "120",
+          "image": "CDN_IMAGE_LINK",
+          "date": "11/1/2020"
+        }
+      ]
     }
-  },
-  aashish: {
-    posts: {
-      1: {
-        caption: 'I like video games',
-        likes: '20',
-        image: 'CDN_IMAGE_LINK',
-        date: '1/1/2020'
-      },
-      2: {
-        caption: 'Went to marine drive',
-        likes: '201',
-        image: 'CDN_IMAGE_LINK',
-        date: '1/2/2020'
-      }
-    }
-  } 
+  }	  
 }
