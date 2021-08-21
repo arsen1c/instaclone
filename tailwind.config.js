@@ -10,6 +10,10 @@ module.exports = {
         '96': '40rem',
         '98': '50rem',
         '100': '62rem'
+      },
+      height: {
+        '96': '40rem',
+        '98': '20rem',
       }
     },
     fontFamily: {
