@@ -25,8 +25,23 @@ async function main() {
   if (result.error) {
     console.log('Error occurred');
   } else {
-    console.log(result.secure_url);
+    console.log(result);
   }
 }
 
-main();
+function deleteImg(publicID) {
+  try {
+    cloudinary.uploader.destroy(publicID, (error, result) => {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      console.log(result);
+    })
+  } catch(e) {
+    console.log('Error:', e);
+  }
+}
+
+// main();
+deleteImg('ibscjnnkeygaof7ak9xi');

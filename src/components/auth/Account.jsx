@@ -26,7 +26,7 @@ export default function Account() {
   // console.log(data);
 
   return (
-    <div className="bg-gray-50 flex flex-col items-center">
+    <div className="bg-gray-50 mt-14 flex flex-col items-center">
       <div className="flex mt-5 flex-col justify-center items-center">
         <div className="flex md:w-98 account-info items-center">
           <div className="pfp">

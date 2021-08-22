@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav className="flex md:justify-center md:content-center h-14 border-b-2 border-gray-200">
+    <nav className="flex md:justify-center md:content-center bg-white h-14 border-b-2 border-gray-200 mt-0 fixed w-full z-10 top-0">
       <div className="flex justify-between md:justify-evenly items-center w-2/3">
         <Link to="/"><h1 className="sm:text-2xl font-Pacifico">Instagram</h1></Link>
         

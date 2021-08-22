@@ -31,7 +31,7 @@ export default function Content(props) {
   // console.log('Data:', data);
 
   return (
-    <div className="max-w-96 h-auto overflow-hidden">
+    <div className="max-w-96 mt-16 h-auto overflow-hidden">
       { error && <div>{error}</div> }
       { loading && (<div>Loading</div>) }
       { data && 
