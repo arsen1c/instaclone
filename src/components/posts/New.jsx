@@ -34,27 +34,32 @@ export default function New() {
     }
   }
   return (
-    <div className="mt-14 h-screen bg-gray-100 flex flex-col items-center">
-      <div className="mt-6 pt-6 bg-white h-auto new w-96">
-        <form action="" method='POST' className="upload-btn-wrapper bg-white w-full flex flex-col">
-          <div className="group items-start text-left m-4">
-            <input type="text" name="caption" className="p-2 w-full block" required/>
-            <span className="highlight"></span>
-            <span className="bar"></span>
-            <label htmlFor="caption" className="block">Caption</label>
+    <div className="mt-14 bg-gray-100 md:flex text-center w-full md:flex-col md:items-center">
+      <div className="md:mt-6 md:pt-6 h-auto new md:w-96">
+        <form action="" method='POST' className="max-h-screen p-4 upload-btn-wrapper bg-white w-full flex flex-col">
+          <div className="group items-start text-left">
+            <label htmlFor="caption" className="text-gray-500 text-xl mb-2 block z-0">Caption</label>
+            <textarea 
+              type="text" 
+              name="caption" 
+              className="bg-gray-50 text-gray-600 border-gradient border-gradient-purple max-h-96 outline-none p-2 w-full block" 
+              placeholder="Eg: My cool new bag"
+            />
           </div>
-          <div className="">
-            <button className="btn cursor-pointer text-center my-10">Upload a file</button>
-            <input type="file" className="bg-red-300 text-center" onChange={handleChange}/>
+          <div className="m-3 upload-button border-1 border-red-100">
+            <input type="file" className="text-center" onChange={handleChange}/>
           </div>
+          { error && (<div className="text-red-400">Invalid file type, only JPG, JPEG, PNG & GIF are allowed</div>) }
+          { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-10"><i className="fas fa-7x fa-image"></i></div> }
+          { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-20">preview</div> }
+          { loading && (
+            <div className="preview border-2 border-gray-300 flex flex-col items-center">
+              { preview && <img src={preview} className="bg-white" alt="" /> }
+            </div>
+          )}
+          <button type="submit" className="submit mt-4 rounded text-white w-full p-2">Submit</button>
         </form>
-        { error && (<div>Invalid file</div>) }
-        { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-40 my-4">preview</div> }
-        { loading && (
-          <div className="preview bg-white border-4 border-gray-300 flex flex-col items-center">
-            { preview && <img src={preview} className="bg-white" alt="" /> }
-          </div>
-        )}
+        
       </div>
     </div>
   )
