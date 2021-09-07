@@ -34,15 +34,15 @@ export default function New() {
     }
   }
   return (
-    <div className="mt-14 bg-gray-100 md:flex text-center w-full md:flex-col md:items-center">
-      <div className="md:mt-6 md:pt-6 h-auto new md:w-96">
-        <form action="" method='POST' className="max-h-screen p-4 upload-btn-wrapper bg-white w-full flex flex-col">
+    <div className="mt-14 mb-14 md:flex text-center w-full md:flex-col md:items-center">
+      <div className="md:mt-6 md:pt-6 bg-white h-auto new md:w-96">
+        <form action="" method='POST' className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
           <div className="group items-start text-left">
             <label htmlFor="caption" className="text-gray-500 text-xl mb-2 block z-0">Caption</label>
             <textarea 
               type="text" 
               name="caption" 
-              className="bg-gray-50 text-gray-600 border-gradient border-gradient-purple max-h-96 outline-none p-2 w-full block" 
+              className="text-gray-600 border-gradient border-gradient-purple max-h-96 outline-none p-2 w-full block" 
               placeholder="Eg: My cool new bag"
             />
           </div>
@@ -53,7 +53,7 @@ export default function New() {
           { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-10"><i className="fas fa-7x fa-image"></i></div> }
           { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-20">preview</div> }
           { loading && (
-            <div className="preview border-2 border-gray-300 flex flex-col items-center">
+            <div className="preview bg-white border-2 border-gray-300 flex flex-col items-center">
               { preview && <img src={preview} className="bg-white" alt="" /> }
             </div>
           )}
