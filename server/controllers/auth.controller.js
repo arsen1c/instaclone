@@ -2,6 +2,7 @@ import AuthService from '../services/authServices.js';
 
 const authController = {
   greet(req, res, next) {
+    // throw Error('my new ERROR vro');
     res.json({
       "route": "/auth",
       "message": "Welcome to /auth endpoint",
@@ -9,12 +10,17 @@ const authController = {
       "author": "arsen1c"
     })
   },
+  // make it async later
   login(req, res, next) {
-    const userData = req.body;
+    try {
+      const userData = req.body;
 
-    const authService = new AuthService();
-    const data = authService.login(userData);
-    res.json({user: data});
+      const authServiceInstance = new AuthService();
+      const { user, token } = authServiceInstance.login(userData);
+      res.json({user, token});
+    } catch (error) {
+      next(error);
+    }
   }
 }
 

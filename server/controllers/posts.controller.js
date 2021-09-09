@@ -2,7 +2,7 @@ const postsController = {
   greet(req, res, next) {
     res.json({
       "name": "instaclone-api",
-      "message": "Hello world!",
+      "message": "Welcome to /api endpoint!",
       "version": "1.0.0",
       "author": "arsen1c"
     })
