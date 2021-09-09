@@ -4,5 +4,6 @@ dotenv.config();
 
 export const {
   DEBUG_MODE,
-  PORT
+  PORT,
+  DB_URL
 } = process.env;
