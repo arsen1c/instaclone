@@ -6,5 +6,6 @@ export const {
   DEBUG_MODE,
   PORT,
   DB_URL,
-  HASHING_SALT
+  HASHING_SALT,
+  JWT_SECRET
 } = process.env;

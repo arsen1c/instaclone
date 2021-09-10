@@ -6,7 +6,7 @@ const { ValidationError } = pkg;
 /**
  * @returns {Object} error status code and error message
  * */
-const errorHandler = (error, req, res, next) => {
+const errorHandler = (error, _req, res, _next) => {
   // console.log(error);
   let statusCode = 500;
   let data = {

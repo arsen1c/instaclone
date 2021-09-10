@@ -8,4 +8,4 @@ get('http://localhost:4000/auth/')
 
 ### POST request to /register
 
-post('http://localhost:4000/auth/register', json={"username":"arsenic","email": "test@gmail.com" ,"password": "secret", "repeat_password": "secret"})
+post('http://localhost:4000/auth/register', json={"username":"arsenic","email": "test1@gmail.com" ,"password": "secret", "repeat_password": "secret"})
