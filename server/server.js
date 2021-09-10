@@ -6,8 +6,6 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-console.log('DBURL:', DB_URL);
-
 mongoose.connect(DB_URL)
 
 const db = mongoose.connection;

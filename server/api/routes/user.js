@@ -4,5 +4,4 @@ const router = express.Router();
 
 router.get('/', postsController.greet);
 
-
 export default router;
