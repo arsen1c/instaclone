@@ -1,4 +1,6 @@
 import { User } from '../models/index.js';
+import bcrypt from 'bcrypt';
+import { HASHING_SALT } from '../config/index.js'
 
 export default class AuthService {
   // Make it async later
@@ -10,16 +12,19 @@ export default class AuthService {
   async register(userData) {
     let result;
     // Todo: Hash the passwords
-    const { username, email, password } = userData;
+    let { username, email, password } = userData;
+    // input validatoin
+    email = email.trim();
 
-    const user = new User({ username, email, password });
-
-    const error = await user.validateSync();
-
-    if (error) throw Error(error);
+    // Check if user already exists
+    const user = await User.exists({ email });
+    // Todo: Create new custom error handler for custom status codes
+    if (user) throw Error('User already exists');
 
     try {
-      result = await user.save();
+      const hashedPassword = await bcrypt.hash(password, Number(HASHING_SALT));
+      
+      result = await User.create({ username, email, password: hashedPassword });
     } catch (error) {
       throw Error(error);
     }

@@ -5,5 +5,6 @@ dotenv.config();
 export const {
   DEBUG_MODE,
   PORT,
-  DB_URL
+  DB_URL,
+  HASHING_SALT
 } = process.env;
