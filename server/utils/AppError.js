@@ -24,5 +24,12 @@ export default class AppError extends Error {
   static wrongCredentials(message = 'Invalid credentials') {
     return new AppError(401, message);
   }
+  /**
+   * @returns StatusCode: 403. Unauthorized. 
+   * 
+   * */
+  static unAuthorized(message = 'Unauthorized') {
+    return new AppError(403, message);
+  }
 
 };

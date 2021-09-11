@@ -1,6 +1,7 @@
 // NO BUSINESS LOGIC HERE!!
 
 import AuthService from '../services/authServices.js';
+import { NODE_ENV } from '../config/index.js';
 
 const authController = {
   // Login method
@@ -12,13 +13,15 @@ const authController = {
       const result = await authServiceInstance.login(userData);
 
       // Todo: Set cookies insead of sending simple json response
-      res.status(200).json(result);
+      res.cookie('token', result.token);
+      res.status(200).json({ result });
     } catch (error) {
       return next(error);
     }
   },
   // Register(user) method
   async register(req, res, next) {
+    console.log(req.cookies)
     const userData = req.body;
 
     try {

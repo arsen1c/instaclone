@@ -7,5 +7,6 @@ export const {
   PORT,
   DB_URL,
   HASHING_SALT,
-  JWT_SECRET
+  JWT_SECRET,
+  NODE_ENV
 } = process.env;

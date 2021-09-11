@@ -7,6 +7,7 @@ const postSchema = new Schema({
   image_link: { type: String, required: true },
   caption: { type: String },
   location: { type: String },
+  likes: { type: Number },
   date: { type: Date, default: Date.now },
 });
 

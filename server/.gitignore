@@ -3,3 +3,4 @@ node_modules/
 yarn.lock
 info.txt
 yarn-error.log
+public/

@@ -18,7 +18,7 @@ export default class AuthService {
 
       let token = this.generateJWTToken({ id: user.id });
 
-      return { _id: user.id, token };
+      return { id: user.id, token };
     } catch (error) {
       throw Error(error);
     }

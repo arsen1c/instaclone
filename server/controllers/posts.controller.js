@@ -1,11 +1,7 @@
 const postsController = {
-  greet(req, res, next) {
-    res.json({
-      "name": "instaclone-api",
-      "message": "Welcome to /api endpoint!",
-      "version": "1.0.0",
-      "author": "arsen1c"
-    })
+  protectedRoute(req, res, next) {
+    console.log(req.body);
+    res.send('<h1>HELLO WORLD</h1>');
   }
 }
 

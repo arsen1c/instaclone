@@ -3,6 +3,7 @@ import { PORT, DB_URL } from './config/index.js';
 import express from 'express';
 import errorHandler from './api/middlewares/errorHandler.js';
 import mongoose from 'mongoose';
+import path from 'path';
 
 const app = express();
 
