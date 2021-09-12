@@ -36,7 +36,7 @@ export default function New() {
   return (
     <div className="mt-14 mb-14 md:flex text-center w-full md:flex-col md:items-center">
       <div className="md:mt-6 md:pt-6 bg-white h-auto new md:w-96">
-        <form action="" method='POST' className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
+        <form method="POST" enctype="multipart/form-data" action="#" className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
           <div className="group items-start text-left">
             <label htmlFor="caption" className="text-gray-500 text-xl mb-2 block z-0">Caption</label>
             <textarea 

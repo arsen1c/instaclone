@@ -7,7 +7,7 @@ export default function Content(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4000/posts')
+    fetch('http://localhost:4000/api/allpost')
       .then(res => {
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
@@ -35,21 +35,21 @@ export default function Content(props) {
       { error && <div>{error}</div> }
       { loading && (<div>Loading</div>) }
       { data && 
-        [...data].reverse().map(post => (
-          <div key={post.id} className="shadow-sm mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
+        [...data].reverse().map((post, idx) => (
+          <div key={idx} className="shadow-sm mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
             <div className="post-head flex items-center py-2 px-4">
               <img
-                src={post.pfp}
+                src={post.image_link}
                 alt=""
                 className="object-cover h-10 w-10 bg-contain overflow-hidden rounded-3xl"
               />
               {/* Make this a Link tag */}
               <div className="username ml-4 font-bold">
-                {post.username}
+                {'arsenic'}
               </div>
             </div>
             <img
-              src={post.image}
+              src={post.image_link}
               alt=""
               className="object-cover max-w-96 max-h-98 overflow-hidden"
             />

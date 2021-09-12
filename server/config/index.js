@@ -8,5 +8,8 @@ export const {
   DB_URL,
   HASHING_SALT,
   JWT_SECRET,
-  NODE_ENV
+  NODE_ENV,
+  CLOUD_NAME, 
+  API_KEY, 
+  API_SECRET
 } = process.env;

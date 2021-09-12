@@ -14,7 +14,7 @@ export default class AuthService {
 
       // compare password
       const match = await bcrypt.compare(password, user.password);
-      if (!match) return AppError.wrongCredentials();
+      if (!match) throw Error(AppError.wrongCredentials());
 
       let token = this.generateJWTToken({ id: user.id });
 
