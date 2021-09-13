@@ -7,7 +7,7 @@ export default function Content(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/allpost')
+    fetch('https://instaclone.vector2912.repl.co/api/allpost')
       .then(res => {
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
@@ -48,11 +48,13 @@ export default function Content(props) {
                 {'arsenic'}
               </div>
             </div>
-            <img
-              src={post.image_link}
-              alt=""
-              className="object-cover max-w-96 max-h-98 overflow-hidden"
-            />
+            <div className="image items-center text-center content-center">
+              <img
+                src={post.image_link}
+                alt=""
+                className="object-cover max-w-96 max-h-98 overflow-hidden"
+              />
+            </div>
             <div className="flex opacity-80 justify-between post-actions px-3 pt-2">
               <div className="main">
                 <i className="far fa-heart text-2xl mr-4 cursor-pointer"></i>
@@ -64,8 +66,11 @@ export default function Content(props) {
             <div className="likes font-bold px-3">
               {post.likes} likes
             </div>
-            <span className="font-bold px-3">arsen1c</span>
-            <span>{post.caption}</span>
+            <div className="bottom px-3">
+              <span className="font-bold pr-2">arsen1c</span>
+              <span>{post.caption}</span>
+              <div className="date text-sm text-gray-400 mt-2">{new Date(post.date).toLocaleString()}</div>
+            </div>
           </div>
         ))
       }

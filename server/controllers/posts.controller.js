@@ -34,7 +34,8 @@ const postsController = {
   },
   async newPost(req, res, next) {
     const { caption } = req.body;
-    
+    if (!req.file) return next(new Error('Image missing!')); 
+
     try {
       const result = await uploadFile(`${path.resolve()}/uploads/${req.file.originalname}`);
 

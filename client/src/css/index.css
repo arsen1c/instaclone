@@ -62,6 +62,11 @@ html, body {
   /*border-width: 1px;*/
 }
 
+.border-bottom {
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #fa9d4c, #c82d8d);
+}
+
 .border-gradient-purple:focus {
   border-image-source: linear-gradient(to right, #fa9d4c, #c82d8d);
 

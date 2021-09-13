@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import imageCompression from 'browser-image-compression';
 
 export default function New() {
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const [caption, setCaption] = useState('');
 
   function isValidFile(file) {
     const validExtensions = ['png', 'jpg', 'jpeg', 'gif'];
@@ -16,8 +19,44 @@ export default function New() {
     return false;
   }
 
+  async function handleSubmit(e) {  
+    e.preventDefault();
+    let compressedFile;
+
+    const options = {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    }
+
+    try {
+      compressedFile = await imageCompression(file, options);
+      // console.log(compressedFile);
+    } catch(e) {
+      console.log(e);
+    }
+
+    const fd = new FormData();
+    fd.append('postImage', compressedFile);
+    fd.append('caption', caption);
+
+    fetch('https://instaclone.vector2912.repl.co/api/post', {
+      method: 'POST',
+      body: fd
+    })
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(error(err)));
+  }
+
+  function handleCaption(e) {
+    setCaption(() => e.target.value);
+  }
+
   function handleChange(e) {
     const file = e.target.files[0];
+    setFile(() => file);
+    console.log('BEFORE:', file);
     
     if (!file) return;
     setLoading(true);
@@ -26,7 +65,7 @@ export default function New() {
       const reader = new FileReader();
       const url = reader.readAsDataURL(file);
 
-      reader.onloadend = (e) => setPreview(reader.result);
+      reader.onloadend = () => setPreview(reader.result);
       console.log(url);
       return setError(false);
     } else {
@@ -36,17 +75,19 @@ export default function New() {
   return (
     <div className="mt-14 mb-14 md:flex text-center w-full md:flex-col md:items-center">
       <div className="md:mt-6 md:pt-6 bg-white h-auto new md:w-96">
-        <form method="POST" enctype="multipart/form-data" action="#" className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
+        <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit} className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
           <div className="group items-start text-left">
-            <label htmlFor="caption" className="text-gray-500 text-xl mb-2 block z-0">Caption</label>
+            <label htmlFor="caption" className="border-bottom border-b-4 text-gray-500 text-xl mb-2 inline z-0">Caption</label>
             <textarea 
               type="text" 
               name="caption" 
               className="text-gray-600 border-gradient border-gradient-purple max-h-96 outline-none p-2 w-full block" 
               placeholder="Eg: My cool new bag"
+              onChange={handleCaption}
+              value={caption}
             />
           </div>
-          <div className="m-3 upload-button border-1 border-red-100">
+          <div className="m-3 upload-button border-3 border-red-100">
             <input type="file" className="text-center" onChange={handleChange}/>
           </div>
           { error && (<div className="text-red-400">Invalid file type, only JPG, JPEG, PNG & GIF are allowed</div>) }
