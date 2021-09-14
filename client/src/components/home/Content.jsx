@@ -31,13 +31,13 @@ export default function Content(props) {
   // console.log('Data:', data);
 
   return (
-    <div className="max-w-96 mt-16 h-auto overflow-hidden">
+    <div className="max-w-96 h-auto overflow-hidden">
       { error && <div>{error}</div> }
       { loading && (<div>Loading</div>) }
       { data && 
         [...data].reverse().map((post, idx) => (
           <div key={idx} className="shadow-sm mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
-            <div className="post-head flex items-center py-2 px-4">
+            <div className="post-head light-border-bottom flex items-center py-2 px-4">
               <img
                 src={post.image_link}
                 alt=""
@@ -52,10 +52,10 @@ export default function Content(props) {
               <img
                 src={post.image_link}
                 alt=""
-                className="object-cover max-w-96 max-h-98 overflow-hidden"
+                className="object-cover inline max-w-96 max-h-98 overflow-hidden"
               />
             </div>
-            <div className="flex opacity-80 justify-between post-actions px-3 pt-2">
+            <div className="flex light-border-top opacity-80 justify-between post-actions px-3 pt-2">
               <div className="main">
                 <i className="far fa-heart text-2xl mr-4 cursor-pointer"></i>
                 <i className="far fa-comment text-2xl mr-4 cursor-pointer"></i>

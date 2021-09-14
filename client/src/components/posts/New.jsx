@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import imageCompression from 'browser-image-compression';
+import { useHistory } from 'react-router-dom';
 
 export default function New() {
   const [preview, setPreview] = useState(null);
@@ -7,6 +8,8 @@ export default function New() {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const [caption, setCaption] = useState('');
+  const [disabled, setDisabled] = useState(false);
+  const history = useHistory();
 
   function isValidFile(file) {
     const validExtensions = ['png', 'jpg', 'jpeg', 'gif'];
@@ -22,6 +25,7 @@ export default function New() {
   async function handleSubmit(e) {  
     e.preventDefault();
     let compressedFile;
+    setDisabled((value) => !value);
 
     const options = {
       maxSizeMB: 2,
@@ -30,10 +34,12 @@ export default function New() {
     }
 
     try {
+      if (!file) return new Error('File is necessary!');
       compressedFile = await imageCompression(file, options);
       // console.log(compressedFile);
     } catch(e) {
       console.log(e);
+      return console.log('Error');
     }
 
     const fd = new FormData();
@@ -45,8 +51,12 @@ export default function New() {
       body: fd
     })
     .then(res => res.json())
-    .then(json => console.log(json))
-    .catch(err => console.log(error(err)));
+    .then(json => {
+      setDisabled((value) => !value);
+      console.log(json);
+      return history.push('/');
+    })
+    .catch(err => console.log(err.message));
   }
 
   function handleCaption(e) {
@@ -73,7 +83,7 @@ export default function New() {
     }
   }
   return (
-    <div className="mt-14 mb-14 md:flex text-center w-full md:flex-col md:items-center">
+    <div className="mb-14 md:flex text-center w-full md:flex-col md:items-center">
       <div className="md:mt-6 md:pt-6 bg-white h-auto new md:w-96">
         <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit} className="p-4 upload-btn-wrapper bg-white w-full flex flex-col">
           <div className="group items-start text-left">
@@ -98,7 +108,7 @@ export default function New() {
               { preview && <img src={preview} className="bg-white" alt="" /> }
             </div>
           )}
-          <button type="submit" className="submit mt-4 rounded text-white w-full p-2">Submit</button>
+          <button disabled={disabled} style={disabled ? {opacity: 0.5} : null} type="submit" className="submit mt-4 rounded text-white w-full p-2">Submit</button>
         </form>
         
       </div>

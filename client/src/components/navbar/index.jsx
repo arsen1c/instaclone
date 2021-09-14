@@ -1,9 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({ isAuth }) {
+  
+  if (!isAuth) {
+    return (
+      <nav className="flex md:justify-center md:content-center bg-white h-14 border-b-2 border-gray-200 mt-0 w-full z-10 top-0">
+        <div className="flex justify-between md:justify-evenly items-center w-2/3">
+          <Link to="/"><h1 className="sm:text-2xl font-Pacifico">Instagram</h1></Link>
+          
+          
+          <div className="actions flex justify-between">
+            <Link to="/login" className="mr-4">Login</Link>
+            <Link to="/register">Signup</Link> 
+          </div>
+        </div>
+      </nav>
+    )
+  }
+
   return (
-    <nav className="flex md:justify-center md:content-center bg-white h-14 border-b-2 border-gray-200 mt-0 fixed w-full z-10 top-0">
+    <nav className="flex md:justify-center md:content-center bg-white h-14 border-b-2 border-gray-200 mt-0 w-full z-10 top-0">
       <div className="flex justify-between md:justify-evenly items-center w-2/3">
         <Link to="/"><h1 className="sm:text-2xl font-Pacifico">Instagram</h1></Link>
         
