@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import SkeletonElement from '../../skeletons/SkeletonElement.jsx';
+import SkeletonPost from '../../skeletons/SkeletonPost.jsx';
 
-export default function Content(props) {
+export default function Content() {
 
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -31,9 +33,17 @@ export default function Content(props) {
   // console.log('Data:', data);
 
   return (
-    <div className="max-w-96 h-auto overflow-hidden">
+    <div className="w-96 h-auto overflow-hidden">
       { error && <div>{error}</div> }
-      { loading && (<div>Loading</div>) }
+      { loading && [1,2,3,4,5].map(n => <SkeletonPost key={n} />) }
+      
+      {/*<SkeletonElement type="avatar"/>
+        <SkeletonElement type="username"/>
+        <SkeletonElement type="thumbnail"/>
+        <SkeletonElement type="likes"/>
+        <SkeletonElement type="caption"/>
+        <SkeletonElement type="date"/>*/}
+
       { data && 
         [...data].reverse().map((post, idx) => (
           <div key={idx} className="shadow-sm mb-4 rounded border b-1 post-card md:w-96 bg-white justify-center pb-2">
