@@ -24,6 +24,7 @@ const postsController = {
   },
 
   async allPosts (req, res, next) {
+    console.log(req.cookies);
     try {
       const postServiceInstance = new PostService();
       const response = await postServiceInstance.getAllPosts();
@@ -32,6 +33,18 @@ const postsController = {
       return next(error);
     }
   },
+
+  async posts (req, res, next) {
+    try {
+      const { username } = req.params;
+      const postServiceInstance = new PostService();
+      const response = await postServiceInstance.getPosts(username);
+      res.status(200).json(response);
+    } catch (error) {
+      return next(error);
+    }
+  },
+
   async newPost(req, res, next) {
     const { caption } = req.body;
     if (!req.file) return next(new Error('Image missing!')); 
@@ -40,7 +53,7 @@ const postsController = {
       const result = await uploadFile(`${path.resolve()}/uploads/${req.file.originalname}`);
 
       const post = {
-        author: '613b7a4e8acc1941e5a4dd50',
+        author: 'arsenic',
         caption,
         image_link: result.url
       }

@@ -46,7 +46,7 @@ export default function New() {
     fd.append('postImage', compressedFile);
     fd.append('caption', caption);
 
-    fetch('https://instaclone.vector2912.repl.co/api/post', {
+    fetch('http://localhost:4000/api/post', {
       method: 'POST',
       body: fd
     })

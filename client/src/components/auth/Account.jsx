@@ -6,7 +6,11 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/posts')
+    // Make it user specific instead of /allpost
+    fetch('http://localhost:4000/api/posts/arsenic', {
+      credentials: 'include',
+      'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE',
+    })
       .then(res => {
         if (!res.ok) {
           return new Error('Could not fetch data for that resource');
@@ -56,10 +60,10 @@ export default function Account() {
         <article className="images justify-center">
           { error && (<div>{error}</div>) }
           { loading && (<div>Loading...</div>) }
-          { data && data.map(post => (
-            <div key={post.id} className="card shadow-sm cursor-pointer">
+          { data && [...data].reverse().map(post => (
+            <div key={post._id} className="card shadow-sm cursor-pointer">
               <img 
-                src={post.image}
+                src={post.image_link}
                 alt="" 
               />
             </div>

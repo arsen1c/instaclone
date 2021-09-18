@@ -28,8 +28,8 @@ export default class AppError extends Error {
    * @returns StatusCode: 403. Unauthorized. 
    * 
    * */
-  static unAuthorized(message = 'Unauthorized') {
-    return new AppError(403, message);
+  static unAuthorized() {
+    return new AppError(403, 'UnAuthorized');
   }
 
 };

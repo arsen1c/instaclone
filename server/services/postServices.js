@@ -19,4 +19,16 @@ export default class PostService {
       throw Error(error);
     }
   }
+
+  async getPosts(username) {
+    try {
+      const result = await Post.find({ author: username });
+      if (!result) {
+        throw Error('Not user found');
+      }
+      return result; 
+    } catch (error) {
+      throw Error(error);
+    }
+  }
 }

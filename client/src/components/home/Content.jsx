@@ -8,8 +8,13 @@ export default function Content() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://instaclone.vector2912.repl.co/api/allpost')
+    fetch('http://localhost:4000/api/allpost', {
+      credentials: 'include'
+    })
       .then(res => {
+        if (res.status !== 200) {
+          throw new Error('Unauthorized!');
+        }
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
         }
@@ -18,6 +23,7 @@ export default function Content() {
       })
       .then(json => {
         setLoading(false);
+        setError(null);
         return setData(json)
       })
       .catch(err => {
@@ -25,7 +31,6 @@ export default function Content() {
           setLoading(false);
           return setError(err.message)
         });
-        console.log(err);
       });
   }, []);
 

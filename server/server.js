@@ -4,8 +4,10 @@ import express from 'express';
 import errorHandler from './api/middlewares/errorHandler.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import cookiParser from 'cookie-parser';
 
 const app = express();
+app.use(cookiParser());
 
 mongoose.connect(DB_URL)
 
@@ -28,6 +30,15 @@ app.use(function (req, res, next) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      'http://localhost:3000',
+    ],
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 app.use('/api', userRoutes);
 app.use('/auth', authRoutes);

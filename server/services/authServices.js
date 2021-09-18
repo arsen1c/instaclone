@@ -2,7 +2,7 @@ import { User } from '../models/index.js';
 import bcrypt from 'bcrypt';
 import { HASHING_SALT, JWT_SECRET } from '../config/index.js'
 import AppError from '../utils/AppError.js';
-import jwt from 'jsonwebtoken';
+import { JWTService } from './jwtService.js';
 
 export default class AuthService {
   async login(userData) {
@@ -16,9 +16,9 @@ export default class AuthService {
       const match = await bcrypt.compare(password, user.password);
       if (!match) throw Error(AppError.wrongCredentials());
 
-      let token = this.generateJWTToken({ id: user.id });
+      let token = JWTService.generateJWTToken({ username: user.username });
 
-      return { id: user.id, token };
+      return { token };
     } catch (error) {
       throw Error(error);
     }
@@ -40,21 +40,12 @@ export default class AuthService {
     try {
       const hashedPassword = await bcrypt.hash(password, Number(HASHING_SALT));
       let user = await User.create({ username, email, password: hashedPassword });
-      let token = this.generateJWTToken({ id: user.id });
+      let token = this.generateJWTToken({ id: user.username });
 
-      return { _id: user.id, token }
+      return { token }
     } catch (error) {
       throw Error(error);
     }
   }
-
-  generateJWTToken(payload, expiry = '7d', secret=JWT_SECRET) {
-    try {
-      return jwt.sign(payload, secret, { expiresIn: expiry });
-    } catch (error) {
-      throw new Error('Error while generating JWT token.');
-    }
-  }
-
 }
 
