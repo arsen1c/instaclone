@@ -1,7 +1,0 @@
-node_modules/
-.env
-yarn.lock
-info.txt
-yarn-error.log
-public/
-uploads/*
