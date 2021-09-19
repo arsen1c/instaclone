@@ -7,14 +7,15 @@ import { JWTService } from './jwtService.js';
 export default class AuthService {
   async login(userData) {
     let { username, password } = userData;
-
+      console.log('RUNNNIG')
     try {
       const user = await User.findOne({ username });
-      if (!user) return AppError.wrongCredentials('Oops! Looks like theres no user with that username');
+      console.log(user);
+      if (!user) throw Error(AppError.wrongCredentials('Oops! Looks like theres no user with that username'));
 
       // compare password
       const match = await bcrypt.compare(password, user.password);
-      if (!match) throw Error(AppError.wrongCredentials());
+      if (!match) throw Error(AppError.wrongCredentials('INvalid password'));
 
       let token = JWTService.generateJWTToken({ username: user.username });
 

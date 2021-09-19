@@ -14,11 +14,13 @@ function App() {
           <Home />
         </Route>
         <Route path="/inbox" component={MessageBox} />
-        <Route path="/:username" component={Account} />
-        <Route path="/new" component={NewPost} />
+        <Route path="/new" >
+          <NewPost />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
+        <Route path="/:username" component={Account} />
       </Switch>
     </>
   );

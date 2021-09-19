@@ -21,7 +21,7 @@ export default class AppError extends Error {
    * @returns StatusCode: 401. Invalid credentials. 
    * 
    * */
-  static wrongCredentials(message = 'Invalid credentials') {
+  static wrongCredentials(message) {
     return new AppError(401, message);
   }
   /**

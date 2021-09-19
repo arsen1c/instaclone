@@ -67,7 +67,6 @@ export default function New() {
   function handleChange(e) {
     const file = e.target.files[0];
     setFile(() => file);
-    console.log('BEFORE:', file);
     
     if (!file) return;
     setLoading(true);
@@ -77,7 +76,6 @@ export default function New() {
       const url = reader.readAsDataURL(file);
 
       reader.onloadend = () => setPreview(reader.result);
-      console.log(url);
       return setError(false);
     } else {
       return setError(true);

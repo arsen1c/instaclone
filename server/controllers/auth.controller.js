@@ -7,7 +7,7 @@ const authController = {
   // Login method
   async login(req, res, next) {
     const userData = req.body;
-
+    console.log('jeeje', userData);
     try {
       const authServiceInstance = new AuthService();
       const result = await authServiceInstance.login(userData);

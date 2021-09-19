@@ -9,8 +9,10 @@ export default function Content() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Cookie:', document.cookie);
     fetch('http://localhost:4000/api/feed', {
-      credentials: 'include'
+      credentials: 'include',
+      'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE, PUT',
     })
       .then(res => {
         if (res.status !== 200) {
