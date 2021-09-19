@@ -14,7 +14,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/inbox" component={MessageBox} />
-        <Route path="/arsenic" component={Account} />
+        <Route path="/:username" component={Account} />
         <Route path="/new" component={NewPost} />
         <Route path="/login">
           <Login />

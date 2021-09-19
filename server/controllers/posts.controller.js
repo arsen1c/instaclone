@@ -45,11 +45,11 @@ const postsController = {
     }
   },
 
-  async posts (req, res, next) {
+  async user (req, res, next) {
     try {
       const { username } = req.params;
       const postServiceInstance = new PostService();
-      const response = await postServiceInstance.getPosts(username);
+      const response = await postServiceInstance.getUserDetails(username);
       res.status(200).json(response);
     } catch (error) {
       return next(error);

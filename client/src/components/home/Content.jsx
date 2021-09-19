@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import SkeletonPost from '../../skeletons/SkeletonPost.jsx';
+import SkeletonPost from '../../skeletons/SkeletonPost.jsx'; 
+import { Link } from 'react-router-dom';
 
 export default function Content() {
 
@@ -59,9 +60,9 @@ export default function Content() {
                   className="object-cover h-10 w-10 bg-contain overflow-hidden rounded-3xl"
                 />
                 {/* Make this a Link tag */}
-                <div className="username ml-4 font-bold">
+                <Link to={"/" + post.author} className="username ml-4 font-bold">
                   {post.author}
-                </div>
+                </Link>
               </div>
               <div className="image items-center text-center content-center">
                 <img
@@ -82,7 +83,7 @@ export default function Content() {
                 {post.likes} likes
               </div>
               <div className="bottom px-3">
-                <span className="font-bold pr-2">{post.author}</span>
+                <span className="font-bold pr-2"><Link to={"/" + post.author}>{post.author}</Link></span>
                 <span>{post.caption}</span>
                 <div className="date text-sm text-gray-400 mt-2">{new Date(post.date).toLocaleString()}</div>
               </div>

@@ -37,13 +37,19 @@ export default class PostService {
   }
 
 
-  async getPosts(username) {
+  async getUserDetails(username) {
     try {
-      const result = await Post.find({ author: username });
-      if (!result) {
+      const user = await User.findOne({ username });
+      console.log(user.posts);
+      if (!user) throw Error('User not found');
+
+      const posts = await Post.find({ _id: {$in: user.posts} });
+      
+      if (!posts) {
         throw Error('Not user found');
       }
-      return result; 
+
+      return { user, posts }; 
     } catch (error) {
       throw Error(error);
     }
@@ -60,7 +66,7 @@ export default class PostService {
 
       if (!user) throw Error('User no found');
 
-      const feedPosts = await Post.find({ "author": { $in: [...user.following] } });
+      const feedPosts = await Post.find({ "author": { $in: user.following } });
 
       return { feedPosts }
     } catch (error) {

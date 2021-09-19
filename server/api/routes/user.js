@@ -19,7 +19,7 @@ const upload = multer({ dest: 'uploads/', storage });
 
 router.post('/', postsController.protectedRoute);
 router.post('/post', isAuth, upload.single('postImage'), postsController.newPost);
-router.get('/posts/:username', postsController.posts);
+router.get('/posts/:username', postsController.user);
 router.get('/feed', isAuth, postsController.feed);
 // DEVELOPMENT
 router.get('/allpost', isAuth, postsController.allPosts);
