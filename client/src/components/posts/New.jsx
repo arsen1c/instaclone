@@ -47,6 +47,7 @@ export default function New() {
     fd.append('caption', caption);
 
     fetch('http://localhost:4000/api/post', {
+      credentials: 'include',
       method: 'POST',
       body: fd
     })

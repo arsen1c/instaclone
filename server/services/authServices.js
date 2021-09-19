@@ -40,7 +40,10 @@ export default class AuthService {
     try {
       const hashedPassword = await bcrypt.hash(password, Number(HASHING_SALT));
       let user = await User.create({ username, email, password: hashedPassword });
-      let token = this.generateJWTToken({ id: user.username });
+      user.following.push(user.username);
+      await user.save();
+
+      let token = JWTService.generateJWTToken({ username: user.username });
 
       return { token }
     } catch (error) {

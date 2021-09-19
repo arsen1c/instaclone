@@ -8,7 +8,7 @@ export default function Content() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/allpost', {
+    fetch('http://localhost:4000/api/feed', {
       credentials: 'include'
     })
       .then(res => {
@@ -24,7 +24,7 @@ export default function Content() {
       .then(json => {
         setLoading(false);
         setError(null);
-        return setData(json)
+        return setData(json.feedPosts)
       })
       .catch(err => {
         setError(() => {
@@ -60,7 +60,7 @@ export default function Content() {
                 />
                 {/* Make this a Link tag */}
                 <div className="username ml-4 font-bold">
-                  {'arsenic'}
+                  {post.author}
                 </div>
               </div>
               <div className="image items-center text-center content-center">
@@ -82,7 +82,7 @@ export default function Content() {
                 {post.likes} likes
               </div>
               <div className="bottom px-3">
-                <span className="font-bold pr-2">arsen1c</span>
+                <span className="font-bold pr-2">{post.author}</span>
                 <span>{post.caption}</span>
                 <div className="date text-sm text-gray-400 mt-2">{new Date(post.date).toLocaleString()}</div>
               </div>

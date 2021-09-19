@@ -14,8 +14,7 @@ export const JWTService = {
     try {
       return jwt.verify(token, secret=JWT_SECRET);
     } catch (error) {
-      console.log(error);
-      throw new Error('Error verifying the JWT token');
+      throw Error('Error verifying the JWT token');
     }
   }
 }

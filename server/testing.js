@@ -9,4 +9,4 @@ function verifyJWTToken(token, secret=JWT_SECRET) {
     throw new Error('Error verifying the JWT token');
   }
 }
-verifyJWTToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyc2VuaWMiLCJpYXQiOjE2MzE5NTc5OTQsImV4cCI6MTYzMjU2Mjc5NH0.8cRzN2rYevUGc_K2dhkCW9i-V0InhvWy5aIAfKqVKAo')
+verifyJWTToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFyc2VuaWMiLCJpYXQiOjE2MzIwMzM2NTMsImV4cCI6MTYzMjYzODQ1M30.BQv4YrULT9F1pui4lI2LdJ9mqCOcnApN3g30cLSUCe8')

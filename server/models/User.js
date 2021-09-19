@@ -10,8 +10,8 @@ const userSchema = new Schema({
   posts: { type: [String] },
   profile_image: { type: String },
   // A collection of Object ID's of users (followers and following)
-  followers: { type: [String], default: 0 },
-  following: { type: [String], default: 0 },
+  followers: { type: [String] },
+  following: { type: [String] },
   created_at: { type: Date, default: Date.now }
 });
 

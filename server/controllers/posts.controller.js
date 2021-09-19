@@ -2,6 +2,8 @@ import { v2 as cloudinary } from 'cloudinary';
 import PostService from '../services/postServices.js';
 import cloudinaryConfig from '../config/cloudinary.js';
 import path from 'path';
+import { response } from 'express';
+import AppError from '../utils/AppError.js';
 
 cloudinary.config(cloudinaryConfig);
 
@@ -24,10 +26,19 @@ const postsController = {
   },
 
   async allPosts (req, res, next) {
-    console.log(req.cookies);
     try {
       const postServiceInstance = new PostService();
       const response = await postServiceInstance.getAllPosts();
+      res.status(200).json(response);
+    } catch (error) {
+      return next(error);
+    }
+  },
+
+  async allUsers (req, res, next) {
+    try {
+      const postServiceInstance = new PostService();
+      const response = await postServiceInstance.getAllUsers();
       res.status(200).json(response);
     } catch (error) {
       return next(error);
@@ -47,25 +58,47 @@ const postsController = {
 
   async newPost(req, res, next) {
     const { caption } = req.body;
+    const user = req.user;
+
+    if (!user) return next(AppError.unAuthorized());
+
     if (!req.file) return next(new Error('Image missing!')); 
 
     try {
       const result = await uploadFile(`${path.resolve()}/uploads/${req.file.originalname}`);
 
       const post = {
-        author: 'arsenic',
+        author: user,
         caption,
         image_link: result.url
       }
 
       const postServiceInstance = new PostService();
-      const response = await postServiceInstance.createNewPost(post);
-      res.status(200).json(response);
+      const response = await postServiceInstance.createNewPost(user, post);
+      res.status(200).json({ response });
     } catch (error) {
       console.log(error);
       return next(error);
     }
-  }
+  },
+
+  async feed(req, res, next) {
+    // Grab the token
+    const { token } = req.cookies;
+
+    try {
+      if (!token) return AppError.unAuthorized();
+
+      const postServiceInstance = new PostService();
+      const { feedPosts } = await postServiceInstance.feed(token);
+      
+      if (!feedPosts) throw AppError.unAuthorized();
+
+      res.json({ feedPosts });
+    } catch (error) {
+      return next(error);
+    }
+  } 
 }
 
 export default postsController;
