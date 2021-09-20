@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { server } from '../../config';
 
 export default function Login() {
 
@@ -18,7 +19,7 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch('http://localhost:4000/auth/login', {
+    fetch(`${server}/auth/login`, {
       method: 'POST',
       credentials: 'include',
       headers: {

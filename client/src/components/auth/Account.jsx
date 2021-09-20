@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { server } from '../../config';
 
 export default function Account() {
   const [error, setError] = useState(null);
@@ -9,7 +10,7 @@ export default function Account() {
 
   useEffect(() => {
     // Make it user specific instead of /allpost
-    fetch(`http://localhost:4000/api/posts/${username}`, {
+    fetch(`${server}/api/posts/${username}`, {
       credentials: 'include',
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE',
     })

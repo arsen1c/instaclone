@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: 'uploads/', storage });
 
-
 router.post('/', postsController.protectedRoute);
 router.post('/post', isAuth, upload.single('postImage'), postsController.newPost);
 router.get('/posts/:username', postsController.user);

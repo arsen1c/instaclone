@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import imageCompression from 'browser-image-compression';
 import { useHistory } from 'react-router-dom';
+import { server } from '../../config';
 
 export default function New() {
   const [preview, setPreview] = useState(null);
@@ -46,7 +47,7 @@ export default function New() {
     fd.append('postImage', compressedFile);
     fd.append('caption', caption);
 
-    fetch('http://localhost:4000/api/post', {
+    fetch(`${server}/api/post`, {
       credentials: 'include',
       method: 'POST',
       body: fd
@@ -57,7 +58,10 @@ export default function New() {
       console.log(json);
       return history.push('/');
     })
-    .catch(err => console.log(err.message));
+    .catch(err => {
+      console.log(err.message);
+      setDisabled((value) => !value);
+    });
   }
 
   function handleCaption(e) {
@@ -73,7 +77,7 @@ export default function New() {
 
     if (isValidFile(file)) {
       const reader = new FileReader();
-      const url = reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
 
       reader.onloadend = () => setPreview(reader.result);
       return setError(false);

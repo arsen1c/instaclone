@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SkeletonPost from '../../skeletons/SkeletonPost.jsx'; 
 import { Link } from 'react-router-dom';
+import { server } from '../../config';
 
 export default function Content() {
 
@@ -9,8 +10,7 @@ export default function Content() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Cookie:', document.cookie);
-    fetch('http://localhost:4000/api/feed', {
+    fetch(`${server}/api/feed`, {
       credentials: 'include',
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE, PUT',
     })
