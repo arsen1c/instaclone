@@ -21,11 +21,12 @@ export default function Login() {
     e.preventDefault();
     fetch(`${server}/auth/login`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      withCredentials: true,
+      credentials: 'include',
       body: JSON.stringify({username, password})
     }).then(res => {
       if (!res.ok) {

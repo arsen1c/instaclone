@@ -20,6 +20,7 @@ export default function Content() {
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE, PUT',
     })
       .then(res => {
+        console.log(res);
         if (res.status !== 200) {
           throw new Error('Unauthorized!');
         }

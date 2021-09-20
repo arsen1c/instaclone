@@ -48,13 +48,13 @@ export default function New() {
     fd.append('caption', caption);
 
     fetch(`${server}/api/post`, {
-      credentials: 'include',
       method: 'POST',
-      withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
+      credentials: 'include',
+      withCredentials: true,
       body: fd
     })
     .then(res => res.json())
