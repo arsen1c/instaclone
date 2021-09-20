@@ -12,6 +12,11 @@ export default function Content() {
   useEffect(() => {
     fetch(`${server}/api/feed`, {
       credentials: 'include',
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE, PUT',
     })
       .then(res => {

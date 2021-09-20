@@ -50,6 +50,11 @@ export default function New() {
     fetch(`${server}/api/post`, {
       credentials: 'include',
       method: 'POST',
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       body: fd
     })
     .then(res => res.json())

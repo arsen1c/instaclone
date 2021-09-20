@@ -12,6 +12,11 @@ export default function Account() {
     // Make it user specific instead of /allpost
     fetch(`${server}/api/posts/${username}`, {
       credentials: 'include',
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE',
     })
       .then(res => {
