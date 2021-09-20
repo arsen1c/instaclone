@@ -39,37 +39,37 @@ export default function Account() {
     <div className="flex flex-col items-center">
       { error && (<div>{error}</div>) }
       { loading && (<div>Loading...</div>) }
-      <div className="flex mt-5 flex-col justify-center items-center">
+      <div className="flex mt-4">
         { data && (
-          <div className="flex md:w-98 account-info items-center">
-          <div className="pfp">
-            <img 
-              src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
-              alt="" 
-              className="object-cover h-48 w-48 rounded-full"
-            />
-          </div>
-          <section className="ml-24 account-stats flex flex-col">
-            <div className="text-2xl">
-              <h2>{data.user.username}</h2>
+          <div className="flex flex-col items-center md:w-98 md:account-info md:items-center">
+            <div className="pfp">
+              <img 
+                src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
+                alt="" 
+                className="object-cover items-center md:h-48 md:w-48 h-28 w-28 rounded-full"
+              />
             </div>
-            <div className="flex mt-3 justify-between">
-              <span className="mr-4"><span className="font-bold">{data.posts.length}</span> posts</span>
-              <span className="mr-4"><span className="font-bold">{data.user.followers.length}</span> followers</span>
-              <span><span className="font-bold">{data.user.following.length}</span> following</span>
-            </div>
-            <div className="mt-3">
-              <h1 className="font-bold">{data.user.name}</h1>
-            </div>
-          </section>
+            <section className="account-stats flex flex-col">
+              <div className="text-2xl text-center">
+                <h2>{data.user.username}</h2>
+              </div>
+              <div className="flex mt-3 justify-between">
+                <span className="mr-4"><span className="font-bold">{data.posts.length}</span> posts</span>
+                <span className="mr-4"><span className="font-bold">{data.user.followers.length}</span> followers</span>
+                <span><span className="font-bold">{data.user.following.length}</span> following</span>
+              </div>
+              <div className="mt-3">
+                <h1 className="font-bold">{data.user.name}</h1>
+              </div>
+            </section>
         </div>
         ) }
       </div>
 
-      <div className="flex border-t pt-12 mt-5 md:w-100 justify-center items-center mb-4">
+      <div className="flex border-t md:pt-12 mt-5 md:w-100 justify-center items-center mb-4">
         <article className="images justify-center">
           { data && [...data.posts].reverse().map(post => (
-            <div key={post._id} className="card shadow-sm cursor-pointer">
+            <div key={post._id} className="card shadow-sm bg-cover cursor-pointer">
               <img 
                 src={post.image_link}
                 alt="" 

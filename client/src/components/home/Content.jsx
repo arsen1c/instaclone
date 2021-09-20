@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SkeletonPost from '../../skeletons/SkeletonPost.jsx'; 
 import { Link } from 'react-router-dom';
 import { server } from '../../config';
+import { SendIcon, HeartIcon, MessageIcon, PocketIcon } from '../../icons/index.js';
 
 export default function Content() {
 
@@ -80,12 +81,12 @@ export default function Content() {
                 />
               </div>
               <div className="flex light-border-top opacity-80 justify-between post-actions px-3 pt-2">
-                <div className="main">
-                  <i className="far fa-heart text-2xl mr-4 cursor-pointer"></i>
-                  <i className="far fa-comment text-2xl mr-4 cursor-pointer"></i>
-                  <i className="far fa-paper-plane text-2xl cursor-pointer"></i>
+                <div className="main flex">
+                  <HeartIcon className="mr-2"/>
+                  <MessageIcon className="cursor-pointer"/>
+                  <SendIcon className="cursor-pointer"/>
                 </div>
-                <i className="far fa-bookmark text-2xl cursor-pointer"></i>
+                <PocketIcon />
               </div>
               <div className="likes font-bold px-3">
                 {post.likes} likes
