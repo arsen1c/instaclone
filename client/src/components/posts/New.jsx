@@ -82,7 +82,7 @@ export default function New() {
 
     if (isValidFile(file)) {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      const url = reader.readAsDataURL(file);
 
       reader.onloadend = () => setPreview(reader.result);
       return setError(false);
