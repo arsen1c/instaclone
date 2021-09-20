@@ -30,7 +30,7 @@ export default function Login() {
       body: JSON.stringify({username, password})
     }).then(res => {
       if (!res.ok) {
-        throw Error(res.statusText);
+        throw Error('Invalid credentials');
       }
       return res.json()
     })

@@ -20,7 +20,7 @@ db.once('open', () => {
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', 'https://flashnotes.vercel.app');
+  res.header('Access-Control-Allow-Origin', 'https://instaclone29.vercel.app');
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.header('Content-Type', 'application/json;charset=UTF-8');
