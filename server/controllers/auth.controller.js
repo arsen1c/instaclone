@@ -13,7 +13,12 @@ const authController = {
       const result = await authServiceInstance.login(userData);
 
       // Todo: Set cookies insead of sending simple json response
-      res.cookie('token', result.token);
+      res.cookie('token', result.token, {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      });
       res.status(200).json({ result });
     } catch (error) {
       return next(error);
