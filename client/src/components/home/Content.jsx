@@ -9,8 +9,15 @@ export default function Content() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [like, setLike] = useState(false);
+
+  const handleLike = (e, postId) => {
+    console.log(postId)
+    return setTimeout(() => setLike(() => !like), 1000);
+  }
 
   useEffect(() => {
+    console.log('Fetching new data');
     fetch(`${server}/api/feed`, {
       credentials: 'include',
       withCredentials: true,
@@ -34,6 +41,7 @@ export default function Content() {
       .then(json => {
         setLoading(false);
         setError(null);
+        console.log(json.feedPosts);
         return setData(json.feedPosts)
       })
       .catch(err => {
@@ -42,7 +50,7 @@ export default function Content() {
           return setError(err.message)
         });
       });
-  }, []);
+  }, [like]);
 
   // console.log('Data:', data);
 
@@ -82,7 +90,9 @@ export default function Content() {
               </div>
               <div className="flex light-border-top opacity-80 justify-between post-actions px-3 pt-2">
                 <div className="main flex">
-                  <HeartIcon className="mr-2"/>
+                  <span onClick={(e) => handleLike(e, post._id)}>
+                    <HeartIcon id={post._id}/>
+                  </span>
                   <MessageIcon className="cursor-pointer"/>
                   <SendIcon className="cursor-pointer"/>
                 </div>

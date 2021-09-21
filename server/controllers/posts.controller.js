@@ -98,6 +98,32 @@ const postsController = {
     } catch (error) {
       return next(error);
     }
+  },
+
+  async like(req, res, next) {
+    const { postId } = req.body;
+
+    try {
+      const postServiceInstance = new PostService();
+      const response = await postServiceInstance.addLike(postId);
+
+      res.json({ response });
+    } catch (error) {
+      return next(error);
+    }
+  },
+
+   async unlike(req, res, next) {
+    const { postId } = req.body;
+
+    try {
+      const postServiceInstance = new PostService();
+      const response = await postServiceInstance.removeLike(postId);
+
+      res.json({ response });
+    } catch (error) {
+      return next(error);
+    }
   } 
 }
 

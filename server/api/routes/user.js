@@ -20,6 +20,8 @@ router.post('/', postsController.protectedRoute);
 router.post('/post', isAuth, upload.single('postImage'), postsController.newPost);
 router.get('/posts/:username', postsController.user);
 router.get('/feed', isAuth, postsController.feed);
+router.post('/like', isAuth, postsController.like);
+router.post('/unlike', isAuth, postsController.unlike);
 // DEVELOPMENT
 router.get('/allpost', isAuth, postsController.allPosts);
 router.get('/allusers', postsController.allUsers);

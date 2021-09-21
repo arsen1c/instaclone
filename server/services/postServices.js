@@ -55,6 +55,36 @@ export default class PostService {
     }
   }
 
+  async addLike(id) {
+   try {
+     const post = await Post.findOne({_id: id});
+
+      if (!post) throw Error('Post not found');
+
+      post.likes++;
+      await post.save();
+
+      return true;
+    } catch (error) {
+      throw Error(error);
+    }
+  }
+
+  async removeLike(id) {
+   try {
+     const post = await Post.findOne({_id: id});
+
+      if (!post) throw Error('Post not found');
+
+      post.likes--;
+      await post.save();
+
+      return true;
+    } catch (error) {
+      throw Error(error);
+    }
+  }
+
   async feed(token) {
     // Verify the token
 
