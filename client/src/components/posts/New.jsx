@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import imageCompression from 'browser-image-compression';
 import { useHistory } from 'react-router-dom';
 import { server } from '../../config';
+import { ImageIcon } from '../../icons';
 
 export default function New() {
   const [preview, setPreview] = useState(null);
@@ -105,7 +106,7 @@ export default function New() {
             <input type="file" className="text-center" onChange={handleChange}/>
           </div>
           { error && (<div className="text-red-400">Invalid file type, only JPG, JPEG, PNG & GIF are allowed</div>) }
-          { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-10"><i className="fas fa-7x fa-image"></i></div> }
+          { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-10"><ImageIcon /></div> }
           { !preview && <div className="flex bg-white flex-col items-center uppercase opacity-20">preview</div> }
           { loading && (
             <div className="preview bg-white border-2 border-gray-300 flex flex-col items-center">
