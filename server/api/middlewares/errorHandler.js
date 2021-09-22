@@ -1,6 +1,7 @@
 import { DEBUG_MODE } from '../../config/index.js';
 import pkg from 'joi';
 import AppError from '../../utils/AppError.js';
+import mongoose from 'mongoose';
 
 const { ValidationError } = pkg;
 
@@ -8,7 +9,7 @@ const { ValidationError } = pkg;
  * @returns {Object} error status code and error message
  * */
 const errorHandler = (error, _req, res, _next) => {
-  // console.log(error);
+  // console.log(error instanceof AppError);
   let statusCode = 500;
   let data = {
     message: 'Internal server error',
@@ -19,9 +20,9 @@ const errorHandler = (error, _req, res, _next) => {
     statusCode = 422;
     data.message = error.message;
   }
-
+  
   if (error instanceof AppError) {
-    statusCode = error.statusCode;
+    statusCode = 401;
     data.message = error.message;
   }
 
