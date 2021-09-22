@@ -25,6 +25,8 @@ export default function Login() {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      withCredentials: true,
+      credentials: 'include',
       body: JSON.stringify({username, password})
     }).then(res => {
       if (!res.ok) {
