@@ -29,8 +29,8 @@ export default function Content() {
     })
       .then(res => {
         console.log(res);
-        if (res.status !== 200) {
-          <Redirect to="login"/>
+        if (res.status === 401) {
+          <Redirect to={{ pathname: '/login' }}/>
         }
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
