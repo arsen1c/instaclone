@@ -42,9 +42,15 @@ export default function Register() {
       if (!res.ok) {
         console.log(res);
         if (res.status === 401) {
-          throw Error('Invalid credentials');
+          res.json().then(data => setError('⛌ '+data.message));
+          throw Error('Already Exists!');
         }
-        console.log(res);
+        res.json().then(data => {
+          if (data.message === '"repeat_password" must be [ref:password]') {
+            setError('⛌ Passwords mismatched!');
+          }
+        });
+        setError('Something went wrong!');
         throw Error('Something went wrong!');
       }
       return res.json()
@@ -56,13 +62,12 @@ export default function Register() {
       })
       .catch(e => {
         console.log(e);
-        setError(e.message);
       })
   }
 
   return (
     <div className="flex justify-center mt-10 sm:mt-24">
-      <form action="" onSubmit={handleSubmit} className="p-8 bg-white rounded shadow-sm sm:w-86">
+      <form action="" onSubmit={handleSubmit} className="p-8 bg-white rounded-lg mb-10 shadow-lg w-3/4 sm:w-86">
         <h1 className="text-center text-2xl mb-6 text-gray-700 font-medium">Register</h1>
         <label className="login-labels">Username</label>
         <input type="text" value={username} placeholder='Username'  name="username" onChange={handleUsername} className="login-input bg-gray-100 block"/>
@@ -73,7 +78,7 @@ export default function Register() {
         <label className="login-labels">Repeat Password</label>
         <input type="password" value={repeatPassword} placeholder="Repeat Password" name="repeat_password" onChange={handleRepeatPass} className="login-input bg-gray-100 block"/>
         <button className="p-2 mt-4 text-gray-100 bg-blue-500 hover:bg-blue-400 rounded-sm">Register</button>
-        <div className="text-red-500 text-sm">{error}</div>
+        <div className="login-error">{error}</div>
         <div className="text-gray-600 mt-4">Already have an account? <Link to="/login" className="text-blue-400 hover:underline">Login</Link></div>
       </form>
     </div>
