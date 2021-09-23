@@ -1,52 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function PostModal({imgLink, isOpen}) {
-  const [showModal, setShowModal] = React.useState(isOpen);
+export default function Modal({ data }) {
+  const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState(null);
+
+  const handleModal = (img) => {
+    setImage(img);
+    setShowModal(true);
+  }
+
   return (
     <>
-      <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Open regular modal
-      </button>
+       <div className="flex md:pt-12 mt-5 md:w-100 justify-center items-center mb-4">
+          <article className="images justify-center">
+            { data && [...data.posts].reverse().map(post => (
+              <div key={post._id} className="card shadow-sm bg-cover cursor-pointer">
+                <img 
+                  src={post.image_link}
+                  alt="" 
+                  onClick={() => handleModal(post.image_link)}
+                />
+              </div>
+            ))}
+          </article>
+        </div>
       {showModal ? (
         <>
-        <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-              
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            className="justify-center max-w-96 items-center flex overflow-x-hidden overflow-hidden fixed inset-0 z-50 outline-none focus:outline-none"
           >
-
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 relative flex flex-col w-full h-98 outline-none focus:outline-none">
+              <div className="border-0 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-
-                <div className="flex items-start justify-between p-5">
-                <button
-                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </button>
-            </div>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
                 {/*body*/}
-                <div className="relative flex-auto">
-                  <img src={imgLink} className="h-auto" alt="" />
+                <div className="p-2 ">
+                  <img src={image} alt="" className="max-h-96"/>
                 </div>
                 {/*footer*/}
+                <div className="flex items-center justify-end">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           </div>

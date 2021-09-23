@@ -8,12 +8,12 @@ export default function Account() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { username } = useParams();
-  const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [modalImg, setModalImg] = useState(null);
 
-  function handleModal(img) {
+  function handleModal(img, value) {
     setModalImg(img);
-    setIsOpen(true);
+    setShowModal(!value);
   }
 
   useEffect(() => {
@@ -45,7 +45,6 @@ export default function Account() {
   
   return (
     <div>
-      <PostModal imgLink={modalImg} isOpen={isOpen}/>
       <div className="flex flex-col items-center">
         { error && (<div>{error}</div>) }
         { loading && (<div>Loading...</div>) }
@@ -77,17 +76,18 @@ export default function Account() {
         </div>
 
         <div className="flex md:pt-12 mt-5 md:w-100 justify-center items-center mb-4">
-          <article className="images justify-center">
+        <PostModal imgLink={modalImg} onClose={() => handleModal(null, false)} show={showModal} data={data}/>
+          {/*<article className="images justify-center">
             { data && [...data.posts].reverse().map(post => (
               <div key={post._id} className="card shadow-sm bg-cover cursor-pointer">
                 <img 
                   src={post.image_link}
                   alt="" 
-                  onClick={() => handleModal(post.image_link)}
+                  onClick={() => handleModal(post.image_link, true)}
                 />
               </div>
             ))}
-          </article>
+          </article>*/}
         </div>
       </div>
     </div>
