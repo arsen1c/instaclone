@@ -28,9 +28,9 @@ export default function Content() {
       'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, DELETE, PUT',
     })
       .then(res => {
-        console.log(res);
+        console.log(typeof(res.status));
         if (res.status === 401) {
-          <Redirect to={{ pathname: '/login' }}/>
+          throw new Error('Unauthorized')
         }
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
@@ -57,7 +57,7 @@ export default function Content() {
   return (
     <div className="">
       <div className="h-auto overflow-hidden">
-        { error && <div>{error}</div> }
+        { error && <Redirect to={{ pathname: '/login' }}/> }
         { loading && [1,2,3,4,5].map(n => <SkeletonPost key={n} />) }
         
         {/*<SkeletonElement type="avatar"/>
