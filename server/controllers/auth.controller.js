@@ -30,7 +30,7 @@ const authController = {
     try {
       const authServiceInstance = new AuthService();
       const result = await authServiceInstance.register(userData);
-      res.cookie('token', result, {
+      res.cookie('token', result.token, {
         httpOnly: true,
         sameSite: 'none',
         secure: true,
