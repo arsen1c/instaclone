@@ -29,7 +29,7 @@ export default function Content() {
     })
       .then(res => {
         console.log(res);
-        if (res.status === 401) {
+        if (res.status !== 200) {
           <Redirect to="login"/>
         }
         if (!res.ok) {
