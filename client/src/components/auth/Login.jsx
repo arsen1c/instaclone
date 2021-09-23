@@ -59,7 +59,7 @@ export default function Login() {
         <input type="password" value={password} placeholder="Password" name="password" onChange={handlePassword} className="login-input bg-gray-100 block"/>
         <button className="p-2 mt-4 text-gray-100 bg-blue-500 hover:bg-blue-400 rounded-sm">Login</button>
         <div className="login-error">{error}</div>
-        <div className="text-gray-600 mt-4">Already have an account? <Link to="/register" className="text-blue-400 hover:underline">Register</Link></div>
+        <div className="text-gray-600 mt-4">Need an account? <Link to="/register" className="text-blue-400 hover:underline">Register</Link></div>
       </form>
     </div>
   )
