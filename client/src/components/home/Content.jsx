@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SkeletonPost from '../../skeletons/SkeletonPost.jsx'; 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { server } from '../../config';
 import { SendIcon, HeartIcon, MessageIcon, PocketIcon } from '../../icons/index.js';
 
@@ -29,8 +29,8 @@ export default function Content() {
     })
       .then(res => {
         console.log(res);
-        if (res.status !== 200) {
-          throw new Error('Unauthorized!');
+        if (res.status === 401) {
+          <Redirect to="login"/>
         }
         if (!res.ok) {
           throw new Error('Could not fetch the resource');
