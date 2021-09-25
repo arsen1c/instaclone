@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { server } from '../../config';
 import PostModal from '../modals/PostModal';
+import Follow from './Follow.jsx';
+import Avatar from 'react-avatar';
+
 
 export default function Account() {
   const [error, setError] = useState(null);
@@ -10,10 +13,16 @@ export default function Account() {
   const { username } = useParams();
   const [showModal, setShowModal] = useState(true);
   const [modalImg, setModalImg] = useState(null);
+  const [isFollowed, setIsFollowed] = useState(false);
 
   function handleModal(img, value) {
     setModalImg(img);
     setShowModal(!value);
+  }
+
+  const handleFollow = (e) => {
+    // add logic to make a request to the API {/friendship}
+    setIsFollowed(value => !value);
   }
 
   useEffect(() => {
@@ -52,15 +61,18 @@ export default function Account() {
           { data && (
             <div className="flex flex-col items-center md:w-98 md:account-info md:items-center">
               <div className="pfp">
-                <img 
-                  src="https://cdn.discordapp.com/attachments/491113748031864842/502707407307407370/IMG_20180901_102050-2.jpg" 
-                  alt="" 
-                  className="object-cover items-center md:h-48 md:w-48 h-28 w-28 rounded-full"
-                />
+                <Avatar 
+                name={data.user.username} 
+                // src={data.user.profile_image} 
+                className="object-cover items-center md:h-48 md:w-48 h-28 w-28 rounded-full"/> 
               </div>
-              <section className="account-stats flex flex-col">
-                <div className="text-2xl text-center">
+              <section className="account-stats flex items-center text-center flex-col">
+                <div className="text-2xl my-2 w-80 ">
                   <h2>{data.user.username}</h2>
+
+                </div>
+                <div onClick={handleFollow} className="">
+                  <Follow followed={isFollowed}/>
                 </div>
                 <div className="flex mt-3 justify-between">
                   <span className="mr-4"><span className="font-bold">{data.posts.length}</span> posts</span>
