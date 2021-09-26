@@ -122,3 +122,66 @@ html, body {
   box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
   border: 3px solid white;
 }
+
+
+/*  SPINNER  */
+.shapes-8 {
+  width: 40px;
+  height: 40px;
+  color: var(--white-2);
+  position: relative;
+  margin: auto;
+  background: radial-gradient(10px, currentColor 94%, #0000);
+}
+.shapes-8:after {
+  content: 'Loading...';
+  position: absolute;
+  bottom: -40px;
+  left: -10px;
+}
+.shapes-8:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(9px at bottom right, #0000 94%, currentColor) top
+      left,
+    radial-gradient(9px at bottom left, #0000 94%, currentColor) top right,
+    radial-gradient(9px at top right, #0000 94%, currentColor) bottom left,
+    radial-gradient(9px at top left, #0000 94%, currentColor) bottom right;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  animation: sp8 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+@keyframes sp8 {
+  33% {
+    inset: -10px;
+    transform: rotate(0deg);
+  }
+  66% {
+    inset: -10px;
+    transform: rotate(90deg);
+  }
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.spinner-3 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: auto 1rem;
+  background: radial-gradient(farthest-side, #fff 99%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 100%, #fff);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}

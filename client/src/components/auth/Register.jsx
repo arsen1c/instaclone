@@ -9,6 +9,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [error, setError] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
   const history = useHistory();
 
   function handleUsername(e) {
@@ -29,6 +30,10 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const button = e.target.querySelector('button');
+
+    button.disabled = true;
+    setIsProcessing(true);
     fetch(`${server}/auth/register`, {
       method: 'POST',
       headers: {
@@ -40,28 +45,35 @@ export default function Register() {
       body: JSON.stringify({username, password, email, repeat_password: repeatPassword})
     }).then(res => {
       if (!res.ok) {
-        console.log(res);
+        setIsProcessing(false);
         if (res.status === 401) {
           res.json().then(data => setError('⛌ '+data.message));
+          button.disabled = false;
           throw Error('Already Exists!');
         }
         res.json().then(data => {
           if (data.message === '"repeat_password" must be [ref:password]') {
-            setError('⛌ Passwords mismatched!');
+            button.disabled = false;
           }
         });
         setError('Something went wrong!');
         throw Error('Something went wrong!');
       }
+      button.disabled = false;
+      setIsProcessing(false);
       return res.json()
     })
       .then(json => {
         console.log(json);
+        setIsProcessing(false);
+        button.disabled = false;
         setError(null);
         history.push('/');
       })
       .catch(e => {
         console.log(e);
+        setIsProcessing(false);
+        button.disabled = false;
       })
   }
 
@@ -70,14 +82,14 @@ export default function Register() {
       <form action="" onSubmit={handleSubmit} className="p-8 bg-white rounded-lg mb-10 shadow-lg w-3/4 sm:w-86">
         <h1 className="text-center text-2xl mb-6 text-gray-700 font-medium">Register</h1>
         <label className="login-labels">Username</label>
-        <input type="text" value={username} placeholder='Username'  name="username" onChange={handleUsername} className="login-input bg-gray-100 block"/>
+        <input required type="text" value={username} placeholder='Username'  name="username" onChange={handleUsername} className="login-input bg-gray-100 block"/>
         <label className="login-labels">Email</label>
-        <input type="text" value={email} placeholder='Email'  name="emali" onChange={handleEmail} className="login-input bg-gray-100 block"/>
+        <input required type="text" value={email} placeholder='Email'  name="emali" onChange={handleEmail} className="login-input bg-gray-100 block"/>
         <label className="login-labels">Password</label>
-        <input type="password" value={password} placeholder="Password" name="password" onChange={handlePassword} className="login-input bg-gray-100 block"/>
+        <input required type="password" value={password} placeholder="Password" name="password" onChange={handlePassword} className="login-input bg-gray-100 block"/>
         <label className="login-labels">Repeat Password</label>
-        <input type="password" value={repeatPassword} placeholder="Repeat Password" name="repeat_password" onChange={handleRepeatPass} className="login-input bg-gray-100 block"/>
-        <button className="p-2 mt-4 text-gray-100 bg-blue-500 hover:bg-blue-400 rounded-sm">Register</button>
+        <input required type="password" value={repeatPassword} placeholder="Repeat Password" name="repeat_password" onChange={handleRepeatPass} className="login-input bg-gray-100 block"/>
+        <button className={`p-2 mt-4 text-gray-100 bg-blue-500 hover:bg-blue-400 rounded-sm ${isProcessing ? 'opacity-50' : ''}`}>Register</button>
         <div className="login-error">{error}</div>
         <div className="text-gray-600 mt-4">Already have an account? <Link to="/login" className="text-blue-400 hover:underline">Login</Link></div>
       </form>

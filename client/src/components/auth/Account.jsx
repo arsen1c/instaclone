@@ -5,7 +5,6 @@ import PostModal from '../modals/PostModal';
 import Follow from './Follow.jsx';
 import Avatar from 'react-avatar';
 
-
 export default function Account() {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -63,7 +62,7 @@ export default function Account() {
               <div className="pfp">
                 <Avatar 
                 name={data.user.username} 
-                // src={data.user.profile_image} 
+                src={data.user.profile_image} 
                 className="object-cover items-center md:h-48 md:w-48 h-28 w-28 rounded-full"/> 
               </div>
               <section className="account-stats flex items-center text-center flex-col">
