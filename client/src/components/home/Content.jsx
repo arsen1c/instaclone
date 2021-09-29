@@ -13,7 +13,7 @@ export default function Content() {
 
   const handleLike = (e, postId) => {
     console.log(postId)
-    return setTimeout(() => setLike(() => !like), 1000);
+    return setTimeout(() => setLike(() => !like), 200);
   }
 
   useEffect(() => {

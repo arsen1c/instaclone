@@ -38,7 +38,7 @@ const authController = {
       });
       res.status(200).json(result);
     } catch(error) {
-      console.log(error);
+      // console.log(error);
       return next(error);
     }
   }
