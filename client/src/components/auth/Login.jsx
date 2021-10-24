@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { server } from '../../config';
+import { UserContext } from '../../context/UserContext';
 
 export default function Login() {
 
@@ -9,6 +10,7 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const history = useHistory();
+  const { user, setUser } = useContext(UserContext);
 
   function handleUsername(e) {
     setUsername(e.target.value);
@@ -48,6 +50,7 @@ export default function Login() {
     })
       .then(json => {
         console.log(json);
+        setUser(json.result.user);
         setError(null);
         setIsProcessing(false);
         button.disabled = false;

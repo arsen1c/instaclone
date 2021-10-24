@@ -2,9 +2,9 @@ import React from 'react'
 
 const NotFollowed = () => {
   return(
-    <div className="text-center w-28 cursor-pointer bg-blue-500 text-white text-sm rounded shadow p-1">
-      follow
-    </div>
+    <form className="text-center w-28 cursor-pointer bg-blue-500 text-white text-sm rounded shadow p-1">
+        follow
+    </form>
   )
 }
 

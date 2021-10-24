@@ -17,7 +17,7 @@ export default class AuthService {
 
       let token = JWTService.generateJWTToken({ username: user.username });
 
-      return { token };
+      return { token, user: user.username };
     } catch (error) {
       throw Error(error);
     }

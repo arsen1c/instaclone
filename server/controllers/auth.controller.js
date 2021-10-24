@@ -15,7 +15,7 @@ const authController = {
       res.cookie('token', result.token, {
         httpOnly: true,
         sameSite: 'none',
-        secure: true,
+        secure: NODE_ENV === 'development' ? false : true,
         path: '/',
       });
       res.status(200).json({ result });

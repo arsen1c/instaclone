@@ -1,7 +1,7 @@
-const DEVELOPMENT = false;
+const DEVELOPMENT = true;
 
 let server = DEVELOPMENT ? 'http://localhost:4000' : 'https://instaclone.vector2912.repl.co';
 
-export  {
+export {
   server
 }
