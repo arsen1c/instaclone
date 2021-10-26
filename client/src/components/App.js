@@ -4,22 +4,18 @@ import { Switch, Route } from 'react-router-dom';
 import MessageBox from './messaging/MessageBox';
 import { Account, Login, Register } from './auth';
 import NewPost from './posts/New';
-import { UserContext } from '../context/UserContext';
+// import { UserContext } from '../context/UserContext';
 import { useState, useMemo, useEffect } from 'react';
 
 function App() {
   const [user, setUser] = useState(null);
 
-  const providerValue = useMemo(() => ({user, setUser}), [user, setUser]); 
-
-  useEffect(() => {
-    console.log('User wa changed')
-  }, [user, setUser])
+  // const providerValue = useMemo(() => ({user, setUser}), [user, setUser]); 
 
   return (
     <>
-      <Navbar isAuth={user}/>
-      <UserContext.Provider value={providerValue}>
+      <Navbar isAuth={true}/>
+      {/*<UserContext.Provider value={providerValue}>*/}
         <Switch>
           <Route path="/" exact>
           <Home />
@@ -36,7 +32,7 @@ function App() {
           </Route>
           <Route path="/:username" component={Account} />
         </Switch>
-      </ UserContext.Provider>
+      {/*</ UserContext.Provider>*/}
     </>
   );
 }
