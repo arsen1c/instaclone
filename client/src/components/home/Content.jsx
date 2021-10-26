@@ -3,8 +3,6 @@ import SkeletonPost from '../../skeletons/SkeletonPost.jsx';
 import { Link, Redirect } from 'react-router-dom';
 import { server } from '../../config';
 import { SendIcon, HeartIcon, MessageIcon, PocketIcon } from '../../icons/index.js';
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext.js';
 
 export default function Content() {
 
@@ -12,7 +10,6 @@ export default function Content() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [like, setLike] = useState(false);
-  const { user } = useContext(UserContext);
 
   const handleLike = (e, postId) => {
     console.log(postId)
@@ -44,7 +41,6 @@ export default function Content() {
       .then(json => {
         setLoading(false);
         setError(null);
-        console.log("User:", user);
         return setData(json.feedPosts)
       })
       .catch(err => {
